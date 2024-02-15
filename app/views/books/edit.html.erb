@@ -1,0 +1,26 @@
+<h2>Editing Book</h2>
+
+<!--バリデーション(空白が無いかの確認)-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+
+  <p>Title</p>
+  <%= f.text_field :title, class: 'edit-title' %>
+
+  <p>Body</p>
+  <%= f.text_area :body, class: 'edit-body' %>
+
+  <%= f.submit "Update Book", class: 'btn' %>
+
+<% end %>
+
+<%= link_to "Show", book_path(@book.id), class: 'show-btn1' %>
+<%= link_to "Back", books_path, class: 'show-btn2' %>
